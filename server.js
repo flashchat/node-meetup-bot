@@ -4,6 +4,7 @@ const express = require('express');
 
 const { logger, bodyParser, port } = require('./src/utils');
 const ParrotBot = require('./src/ParrotBot');
+const GiphyBot = require('./src/GiphyBot');
 
 const app = express().use(bodyParser.json()); // creates express http server
 
@@ -34,7 +35,12 @@ app.post('/webhook', (req, res) => {
       // will only ever contain one message, so we get index 0
       if (entry.messaging) {
         const event = entry.messaging[0];
-        ParrotBot(event);
+        const message = event.message.text.toLowerCase();
+        if (message.startsWith('gif')) {
+          GiphyBot(event);
+        } else {
+          ParrotBot(event);
+        }
       }
     });
 
