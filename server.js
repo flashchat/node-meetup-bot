@@ -5,6 +5,7 @@ const express = require('express');
 const { logger, bodyParser, port } = require('./src/utils');
 const ParrotBot = require('./src/ParrotBot');
 const GiphyBot = require('./src/GiphyBot');
+const NewsBot = require('./src/NewsBot');
 
 const app = express().use(bodyParser.json()); // creates express http server
 
@@ -38,6 +39,8 @@ app.post('/webhook', (req, res) => {
         const message = event.message.text.toLowerCase();
         if (message.startsWith('gif')) {
           GiphyBot(event);
+        } else if (message.startsWith('news')) {
+          NewsBot(event);
         } else {
           ParrotBot(event);
         }
