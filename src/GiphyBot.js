@@ -16,7 +16,7 @@ const giphyApiRequest = (searchText) => {
   };
   requestWrapper.apiRequest(url, edge, method, qs).then((body) => {
     const { data } = body;
-    const message = data[0].embed_url;
+    const message = data[0].images.fixed_width.url;
     def.resolve(message);
   }).catch(err => def.reject(err));
 
