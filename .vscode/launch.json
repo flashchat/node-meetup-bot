@@ -1,0 +1,21 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "nodemon",
+        "runtimeExecutable": "node",
+        "program": "${workspaceFolder}/server.js",
+        // "restart": true,
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "env": {
+            "PAGE_TOKEN": "EAAbmEQQxszoBAO02EARBu9ek0d9mXI2LMHSAAIX5WO9ftKun0n7PpGMSO5DPUgJ5Vq48KbcCdUg14NmwK02SLwb78T9ORmnaN0GEQGZCMddTGYY9nZBJFbOUFS3uFm7CuC2IbQB54yiS0srFYpZAtOgEvg4ZCzxEYSu6ZBkZBXYdh0ZC2qxP0PeMWIZBwLlfXXoZD"
+        },
+      },
+    ]
+  }
