@@ -1,7 +1,7 @@
 const request = require('requestretry');
 const Q = require('q');
 
-const requestWrapper = (url, edge, method, qs = {}) => {
+const apiRequest = (url, edge, method, qs = {}) => {
   const def = Q.defer();
   request({
     url: `${url}/${edge}`,
@@ -16,5 +16,5 @@ const requestWrapper = (url, edge, method, qs = {}) => {
 };
 
 module.exports = {
-  requestWrapper,
+  apiRequest,
 };
