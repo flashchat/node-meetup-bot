@@ -1,4 +1,4 @@
-const { logger } = require('./utils');
+const { logger, newsApiKey } = require('./utils');
 const { send } = require('./FbSender');
 const requestWrapper = require('./requestWrapper');
 const Q = require('q');
@@ -11,7 +11,7 @@ const newsApiRequest = (searchText) => {
   const qs = {
     q: searchText,
     sources: 'tech-crunch',
-    apiKey: '34a3193932f54e6bb75f8be00b9fe4dc',
+    apiKey: newsApiKey,
     sortBy: 'relevancy',
     language: 'en',
   };

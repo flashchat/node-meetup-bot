@@ -11,6 +11,7 @@ const port = 3300;
 // ==== Page settings ====
 const token = process.env.PAGE_TOKEN;
 const giphyApiKey = process.env.GIPHY_API_KEY;
+const newsApiKey = process.env.NEWS_API_KEY;
 
 module.exports = {
   logger,
@@ -18,4 +19,5 @@ module.exports = {
   port,
   token,
   giphyApiKey,
+  newsApiKey,
 };
