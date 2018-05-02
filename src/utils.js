@@ -1,12 +1,25 @@
 
 const log4js = require('log4js');
-
 const bodyParser = require('body-parser');
+const validUrl = require('valid-url');
 
 const logger = log4js.getLogger();
 logger.level = 'trace';
 
 const port = 3300;
+
+const generateElements = (m) => {
+  return {
+    title: m.title,
+    image_url: m.urlToImage,
+    subtitle: m.description,
+    buttons: [{
+      type: 'web_url',
+      url: m.url,
+      title: 'View Website',
+    }],
+  };
+};
 
 // ==== Page settings ====
 const token = process.env.PAGE_TOKEN;
@@ -18,6 +31,8 @@ module.exports = {
   bodyParser,
   port,
   token,
+  validUrl,
   giphyApiKey,
   newsApiKey,
+  generateElements,
 };

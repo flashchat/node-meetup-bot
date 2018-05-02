@@ -1,4 +1,4 @@
-const { logger, newsApiKey } = require('./utils');
+const { logger, newsApiKey, generateElements, validUrl } = require('./utils');
 const { send } = require('./FbSender');
 const requestWrapper = require('./requestWrapper');
 const Q = require('q');
@@ -10,7 +10,6 @@ const newsApiRequest = (searchText) => {
   const method = 'GET';
   const qs = {
     q: searchText,
-    sources: 'tech-crunch',
     apiKey: newsApiKey,
     sortBy: 'relevancy',
     language: 'en',
@@ -29,8 +28,18 @@ const NewsBot = (ev) => {
     logger.debug(`Message by ${userId}:`, ev.message.text);
     const text = ev.message.text.substring(5, ev.message.text.length);
     newsApiRequest(text).then((msg) => {
-      console.log('News', msg);
-      // send({ userId, message });
+      // msg is an Array of 20 news
+      const elements = msg.filter(m => m.urlToImage !== null).filter(m => validUrl.isUri(m.urlToImage)).slice(0, 10).map(m => generateElements(m));
+      const message = {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements,
+          },
+        },
+      };
+      send({ userId, message });
     });
   }
 };
