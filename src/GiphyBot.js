@@ -1,4 +1,4 @@
-const { logger } = require('./utils');
+const { logger, giphyApiKey } = require('./utils');
 const { send } = require('./FbSender');
 const requestWrapper = require('./requestWrapper');
 const Q = require('q');
@@ -9,14 +9,14 @@ const giphyApiRequest = (searchText) => {
   const edge = 'gifs/search';
   const method = 'GET';
   const qs = {
-    api_key: 'y4kaYdri2tmdoFcVAo7LRQZz95zK8Ndn',
+    api_key: giphyApiKey,
     q: searchText,
     limit: 10,
     lang: 'en',
   };
   requestWrapper.apiRequest(url, edge, method, qs).then((body) => {
     const { data } = body;
-    const message = data[0].images.fixed_width.url;
+    const message = data[Math.floor(Math.random() * 10)].images.fixed_width.url;
     def.resolve(message);
   }).catch(err => def.reject(err));
 
